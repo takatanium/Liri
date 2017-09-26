@@ -26,7 +26,7 @@ let getSong = function(song) {
 			dataString += j !== data.tracks.items[0].artists.length-1 ? ", " : "\n";
 		}
 		dataString += `Song: ${data.tracks.items[0].name}\n`;
-  	dataString += `Album: ${data.tracks.items[0].album.name}\n`;
+		dataString += `Album: ${data.tracks.items[0].album.name}\n`;
 		dataString += `Link: ${data.tracks.items[0].external_urls.spotify}\n`;
 
   	logFile(`spotify-this-song ${song}`, dataString);

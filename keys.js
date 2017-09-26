@@ -10,7 +10,7 @@ let keys = {
 	}),
 	spotify: new Spotify({
 		id: "1cc854576b604874a9427c3f135a2b0f",
-    secret: "d595a9bb0a304f419238baf4d01de63e"
+		secret: "d595a9bb0a304f419238baf4d01de63e"
 	})
 }
 
