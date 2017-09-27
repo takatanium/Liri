@@ -63,8 +63,20 @@ let readFile = function(file) {
 let logFile = function(command, data) {
   dataString = `RAN ---> ${command}\n${data}\n`;
   fs.appendFile('log.txt', dataString, function (err) {
-  if (err) throw err;
+    if (err) throw err;
     console.log(dataString);
+  });
+}
+
+let cleverbot = function(input) {
+  if (input === undefined) input = "What should I do with my life?";
+  request({
+    url: `http://www.cleverbot.com/getreply?key=CC4or0x4_EoSGKHM1nYANdCGwOw&input=${input}`,
+    method: 'GET',
+  }, function(err, res, body) {
+    if (err) throw err;
+    let data = JSON.parse(body);
+    console.log(data.output);
   });
 }
 
@@ -74,7 +86,7 @@ let liri = function(command, param) {
     case ("spotify-this-song"): getSong(param); break;
     case ("movie-this"): getMovie(param); break;
     case ("do-what-it-says"): readFile(param); break;
-    default: console.log("Function does not exist."); break;
+    default: cleverbot(param !== undefined ? `${command} ${param}` : command); break;
   }
 }
 
