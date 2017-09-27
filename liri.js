@@ -54,10 +54,12 @@ let getMovie = function(movie) {
 let readFile = function(file) {
   if (file === undefined) file = "random.txt";
   let lines = fs.readFileSync(file, 'utf8').split("\n");
-  for (let i = 0; i < lines.length; i++) {
-    let data = lines[i].split(",");
-    liri(data[0], data[1]);
-  }
+  let data = lines[0].split(",");
+  liri(data[0], data[1]);
+  // for (let i = 0; i < lines.length; i++) {
+  //   let data = lines[i].split(",");
+  //   liri(data[0], data[1]);
+  // }
 }
 
 let logFile = function(command, data) {
