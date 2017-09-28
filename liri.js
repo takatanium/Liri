@@ -17,7 +17,7 @@ let getTweets = function() {
 
 let getSong = function(song) {
   if (song === undefined) song = "\"The Sign\"";
-  keys.spotify.search({ type: "track", query: song, limit: 3 }, function(err, data) {
+  keys.spotify.search({ type: "track", query: song, limit: 1 }, function(err, data) {
     if (err) throw err;
     let dataString = "Artist(s): ";
     for (let j = 0; j < data.tracks.items[0].artists.length; j++) {
@@ -56,10 +56,6 @@ let readFile = function(file) {
   let lines = fs.readFileSync(file, 'utf8').split("\n");
   let data = lines[0].split(",");
   liri(data[0], data[1]);
-  // for (let i = 0; i < lines.length; i++) {
-  //   let data = lines[i].split(",");
-  //   liri(data[0], data[1]);
-  // }
 }
 
 let logFile = function(command, data) {
@@ -71,14 +67,18 @@ let logFile = function(command, data) {
 }
 
 let cleverbot = function(input) {
-  if (input === undefined) input = "What should I do with my life?";
+  if (input === undefined) input = "Hello cleverbot, what should we do?";
   request({
     url: `http://www.cleverbot.com/getreply?key=CC4or0x4_EoSGKHM1nYANdCGwOw&input=${input}`,
     method: 'GET',
   }, function(err, res, body) {
     if (err) throw err;
     let data = JSON.parse(body);
-    console.log(data.output);
+    console.log("-----------------------------");
+    console.log(`CleverBot: ${data.output}`);
+    console.log("-----------------------------");
+    console.log("Please use existing functions:");
+    console.log("-> my-tweets\n-> spotify-this-song\n-> movie-this\n-> do-what-it-says");
   });
 }
 
